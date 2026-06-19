@@ -31,8 +31,9 @@ class UserCreateView(generics.CreateAPIView):
             key="auth_token",
             value=token.key,
             httponly=True,
-            secure=not settings.DEBUG, 
-            samesite="Lax",
+            secure=True,
+            samesite="None",
+            max_age=3600,
         )
-
+        
         return response
