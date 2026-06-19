@@ -145,6 +145,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 CORS_ALLOWED_ORIGINS = [
+    'https://delivery-profit-frontend.vercel.app',
     "http://localhost:5173",
 ]
 
