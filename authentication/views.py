@@ -46,24 +46,24 @@ class LoginView(APIView):
                 status=401
             )
         
-class LogoutView(APIView): 
+class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-
         token = request.COOKIES.get("auth_token")
 
         if token:
             Token.objects.filter(key=token).delete()
 
-        response = Response({
-            'message': 'Logout successful',
-        },
-            status=200)
+        response = Response({'message': 'Logout successful'}, status=200)
 
-        response.delete_cookie('auth_token')
+        response.delete_cookie(
+            key="auth_token",
+            path="/",
+            samesite="None",   
+        )
 
-        return response  
+        return response
     
 class MeView(APIView):
     permission_classes = [IsAuthenticated]
