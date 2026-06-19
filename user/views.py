@@ -15,6 +15,7 @@ class UserCreateView(generics.CreateAPIView):
 
         user = serializer.save()
 
+
         token, _ = Token.objects.get_or_create(user=user)
 
         response = Response(
