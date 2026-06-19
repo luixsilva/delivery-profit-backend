@@ -71,6 +71,9 @@ class MeView(APIView):
     def get(self, request):
         user = request.user
         print('User', user)
+        print("COOKIES:", request.COOKIES)
+        print("USER:", request.user)
+        print("AUTH:", request.auth)
         return Response({
             "id": user.id,
             "name": user.name,
