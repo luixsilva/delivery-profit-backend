@@ -8,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
 from user.models import User
 from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from .services.email_service import send_reset_email
 
@@ -112,7 +112,7 @@ class PasswordResetConfirmView(APIView):
         new_password = request.data.get("new_password")
 
         try:    
-            user_id = urlsafe_base64_encode(uid).decode()
+            user_id = urlsafe_base64_decode(uid).decode()
             user = User.objects.get(pk=user_id)
         except:
             return Response({
